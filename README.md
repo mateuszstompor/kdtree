@@ -20,3 +20,23 @@ Where "x.x.x" is a version number
 
 ###### Online installation with ruby gem
 It is not available at the moment, you will be able to install gem when it becomes fully stable
+
+# Usage
+```ruby
+    # First of all you have to import the library to your project
+    require 'kd_tree_ms'
+
+    # Create an empty tree of dimension 2
+    tree = Kd::Tree.new 2
+
+    # Insert value to the tree
+    # Provide coordinates
+    # As an example let's take [0, 1] where 0 is x and 1 is y coordinate
+    tree.insert [0, 1], 'some_value'
+
+    # You can check if the tree is empty
+    puts tree.empty?
+
+    # It is possible to check its size as well
+    puts tree.size
+```
