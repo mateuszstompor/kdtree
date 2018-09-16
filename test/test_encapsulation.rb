@@ -1,4 +1,4 @@
-require 'minitest/autorun'
+require 'minitest/autorun'g
 require_relative '../lib/kd_tree.rb'
 
 class EncapsulationTests < Minitest::Test

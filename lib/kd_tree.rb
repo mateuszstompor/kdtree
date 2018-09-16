@@ -49,7 +49,7 @@ module Kd
                     current_node.right = node_to_insert
                     node_to_insert.parent = current_node
                 else
-                    new_index = ((index + 1) % dimension)
+                    new_index = (index + 1) % dimension
                     insert_node current_node.right, node_to_insert, new_index
                 end
             else
@@ -57,10 +57,14 @@ module Kd
                     current_node.left = node_to_insert
                     node_to_insert.parent = current_node
                 else
-                    new_index = ((index + 1) % dimension)
+                    new_index = (index + 1) % dimension
                     insert_node current_node.left, node_to_insert, new_index
                 end
             end
+        end
+
+        def clear
+            @root = nil
         end
 
         def root
