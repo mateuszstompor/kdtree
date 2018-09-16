@@ -1,4 +1,4 @@
-require 'minitest/autorun'g
+require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class EncapsulationTests < Minitest::Test
@@ -21,6 +21,10 @@ class EncapsulationTests < Minitest::Test
         tree = Kd::Tree.new
         assert_raises(NoMethodError) do
             tree.insert_node
+        end
+
+        assert_raises(NoMethodError) do
+            tree.look_for_value_from
         end
     end
 

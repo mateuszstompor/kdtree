@@ -75,7 +75,24 @@ module Kd
             !@root
         end
 
+        def include? value
+            return false unless @root
+            look_for_value_from @root, value
+        end
+
+        def look_for_value_from node, value
+            if value == node.value
+                true
+            elsif node.left
+                look_for_value_from node.left, value
+            elsif node.right
+                look_for_value_from node.right, value
+            else
+                false
+            end
+        end
+
         private_constant :Node
-        private :root, :insert_node
+        private :root, :insert_node, :look_for_value_from
     end
 end
