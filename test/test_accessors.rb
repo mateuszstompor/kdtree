@@ -4,7 +4,7 @@ require_relative '../lib/kd_tree.rb'
 class AccessorsTests < Minitest::Test
 
     def test_dimension_force_change
-        tree = KdTree::Tree.new
+        tree = Kd::Tree.new
         assert_raises do
             tree.dimension = 4
         end

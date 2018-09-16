@@ -5,13 +5,18 @@ class ConstructorTests < Minitest::Test
 
     # The Smallest partitioning tree is the binary tree
     def test_default_constructor
-        tree = KdTree::Tree.new
+        tree = Kd::Tree.new
         assert tree.dimension == 2
     end
 
     def test_n_dimensional_constructor
-        tree = KdTree::Tree.new 4
+        tree = Kd::Tree.new 4
         assert tree.dimension == 4
+    end
+
+    def test_if_empty_tree_has_nil_root
+        tree = Kd::Tree.new
+        assert_nil tree.send(:root)
     end
 
 end
