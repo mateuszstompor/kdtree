@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "A container which you can use to partition n-dimensional space and search for a specyfic element in that space effectively"
   s.authors     = ["Mateusz Stompór"]
   s.email       = 'mateusz.stompor@gmail.com'
-  s.files       = ["lib/sp_tree.rb"]
+  s.files       = ["lib/kd_tree.rb"]
   s.homepage    = "http://rubygems.org/gems/sp_tree"
   s.license     = 'MIT'
 end
