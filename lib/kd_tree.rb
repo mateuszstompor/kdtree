@@ -6,7 +6,7 @@ module Kd
     class DimensionError < StandardError; end
 
     class Tree
-        attr_reader :dimension
+        attr_reader :dimension, :size
 
         class Node
             attr_reader :coordinates, :value
@@ -25,13 +25,14 @@ module Kd
             raise DimensionError if dimension < 2
             @dimension = dimension
             @root = nil
+            @size = 0
         end
 
         # Greater or equal value is on the right side
         def insert coordinates, value
             raise ArgumentError unless coordinates.is_a? Array
             raise DimensionError if coordinates.length != dimension
-
+            @size += 1
             node = Node.new coordinates, value, nil
             if @root
                 insert_node @root, node, 0
@@ -64,6 +65,10 @@ module Kd
 
         def root
             @root
+        end
+
+        def empty?
+            !@root
         end
 
         private_constant :Node
