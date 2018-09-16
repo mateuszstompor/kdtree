@@ -32,12 +32,34 @@ module Kd
             raise ArgumentError unless coordinates.is_a? Array
             raise DimensionError if coordinates.length != dimension
 
+            node = Node.new coordinates, value, nil
             if @root
+                insert_node @root, node, 0
             else
-                @root = Node.new coordinates, value, nil
+                @root = node
             end
 
             value
+        end
+
+        def insert_node current_node, node_to_insert, index
+            if current_node.coordinates[index] <= node_to_insert.coordinates[index]
+                unless current_node.right
+                    current_node.right = node_to_insert
+                    node_to_insert.parent = current_node
+                else
+                    new_index = ((index + 1) % dimension)
+                    insert_node current_node.right, node_to_insert, new_index
+                end
+            else
+                unless current_node.left
+                    current_node.left = node_to_insert
+                    node_to_insert.parent = current_node
+                else
+                    new_index = ((index + 1) % dimension)
+                    insert_node current_node.left, node_to_insert, new_index
+                end
+            end
         end
 
         def root
@@ -45,6 +67,6 @@ module Kd
         end
 
         private_constant :Node
-        private :root
+        private :root, :insert_node
     end
 end
