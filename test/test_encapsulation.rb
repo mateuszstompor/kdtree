@@ -10,6 +10,13 @@ class EncapsulationTests < Minitest::Test
         end
     end
 
+    def test_if_modification_of_size_gives_an_error
+        tree = Kd::Tree.new
+        assert_raises(NoMethodError) do
+            tree.size = 2
+        end
+    end
+
     def test_if_using_internal_function_gives_an_error
         tree = Kd::Tree.new
         assert_raises(NoMethodError) do
