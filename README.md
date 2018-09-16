@@ -1,4 +1,7 @@
 # KDTree
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://www.travis-ci.org/mateuszstompor/kdtree.svg?branch=master)](https://www.travis-ci.org/mateuszstompor/kdtree)
+<br>
 Repository contains Ruby implementation of space partitioning tree data structure. It is a form of binary tree and its detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree).
 
 # Installation
