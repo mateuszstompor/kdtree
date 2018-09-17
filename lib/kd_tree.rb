@@ -39,8 +39,31 @@ module Kd
             else
                 @root = node
             end
-
             value
+        end
+
+        def retrieve ranges
+            retrieve_value ranges, 0, @root, []
+        end
+
+        def retrieve_value ranges, index, node, values
+            return values if node.nil?
+            is_point_within_bounds = true
+            ranges.each_index { |i|
+                is_point_within_bounds &&= ranges[i].include?(node.coordinates[i])
+            }
+            if is_point_within_bounds
+                values << node.value
+            end
+            if ranges[index].include?(node.coordinates[index])
+                retrieve_value ranges, (index + 1) % dimension, node.left, values
+                retrieve_value ranges, (index + 1) % dimension, node.right, values
+            elsif ranges[index].max < node.coordinates[index]
+                retrieve_value(ranges, ((index + 1) % dimension), node.left, values)
+            else
+                retrieve_value(ranges, ((index + 1) % dimension), node.right, values)
+            end
+
         end
 
         def insert_node current_node, node_to_insert, index
@@ -49,7 +72,7 @@ module Kd
                     current_node.right = node_to_insert
                     node_to_insert.parent = current_node
                 else
-                    new_index = ((index + 1) % dimension)
+                    new_index = (index + 1) % dimension
                     insert_node current_node.right, node_to_insert, new_index
                 end
             else
@@ -57,10 +80,14 @@ module Kd
                     current_node.left = node_to_insert
                     node_to_insert.parent = current_node
                 else
-                    new_index = ((index + 1) % dimension)
+                    new_index = (index + 1) % dimension
                     insert_node current_node.left, node_to_insert, new_index
                 end
             end
+        end
+
+        def clear
+            @root = nil
         end
 
         def root
@@ -71,7 +98,24 @@ module Kd
             !@root
         end
 
+        def include? value
+            return false unless @root
+            look_for_value_from @root, value
+        end
+
+        def look_for_value_from node, value
+            if value == node.value
+                true
+            elsif node.left
+                look_for_value_from node.left, value
+            elsif node.right
+                look_for_value_from node.right, value
+            else
+                false
+            end
+        end
+
         private_constant :Node
-        private :root, :insert_node
+        private :root, :insert_node, :look_for_value_from, :retrieve_value
     end
 end

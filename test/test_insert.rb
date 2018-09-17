@@ -37,7 +37,7 @@ class InsertTests < Minitest::Test
 
         # negative number
         assert_raises(Kd::DimensionError) do
-            Kd::Tree.new -1
+            Kd::Tree.new(-1)
         end
     end
 
