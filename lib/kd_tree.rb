@@ -39,8 +39,31 @@ module Kd
             else
                 @root = node
             end
-
             value
+        end
+
+        def retrieve ranges
+            retrieve_value ranges, 0, @root, []
+        end
+
+        def retrieve_value ranges, index, node, values
+            return values if node.nil?
+            is_point_within_bounds = true
+            ranges.each_index { |i|
+                is_point_within_bounds &&= ranges[i].include?(node.coordinates[i])
+            }
+            if is_point_within_bounds
+                values << node.value
+            end
+            if ranges[index].include?(node.coordinates[index])
+                retrieve_value ranges, (index + 1) % dimension, node.left, values
+                retrieve_value ranges, (index + 1) % dimension, node.right, values
+            elsif ranges[index].max < node.coordinates[index]
+                retrieve_value(ranges, ((index + 1) % dimension), node.left, values)
+            else
+                retrieve_value(ranges, ((index + 1) % dimension), node.right, values)
+            end
+
         end
 
         def insert_node current_node, node_to_insert, index
@@ -93,6 +116,6 @@ module Kd
         end
 
         private_constant :Node
-        private :root, :insert_node, :look_for_value_from
+        private :root, :insert_node, :look_for_value_from, :retrieve_value
     end
 end
