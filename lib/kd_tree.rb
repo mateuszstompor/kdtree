@@ -103,6 +103,10 @@ module Kd
             look_for_value_from @root, value
         end
 
+        def << rhs
+          insert rhs.take(rhs.length - 1), rhs.last
+        end
+
         def look_for_value_from node, value
             if value == node.value
                 true
