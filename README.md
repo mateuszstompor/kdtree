@@ -4,6 +4,9 @@
 <br>
 Repository contains Ruby implementation of space partitioning tree data structure. It is a form of binary tree and its detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree).
 
+# Approach
+The Tree was implemented in TDD approach. There are many simple, easy to read tests implemented with help of MiniTest gem. 
+
 # Installation
 ###### Offline installation
 * Download or clone repository
@@ -24,7 +27,7 @@ It is not available at the moment, you will be able to install gem when it becom
 # Usage
 ```ruby
     # First of all you have to import the library to your project
-    require 'kd_tree_ms'
+    require 'kd_treųe_ms'
 
     # Create an empty tree of dimension 2
     tree = Kd::Tree.new 2
@@ -35,8 +38,21 @@ It is not available at the moment, you will be able to install gem when it becom
     tree.insert [0, 1], 'some_value'
 
     # You can check if the tree is empty
-    puts tree.empty?
+    tree.empty?
+
+    # Check if it includes a value which you are looking for
+    tree.include? 'some_value' 
+
+    # Clear an existing tree
+    tree.clear 
+
+    # Retrieve data from a tree
+    # Supply amount of ranges equivalent to the dimension of a tree 
+    tree.retrieve [0..2, -1..2] 
+
+    # Check the dimension of a tree
+    tree.dimension
 
     # It is possible to check its size as well
-    puts tree.size
+    tree.size
 ```
