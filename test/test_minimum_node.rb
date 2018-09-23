@@ -44,4 +44,16 @@ class MinimumNodeTests < Minitest::Test
     assert_equal('b', node.value)
   end
 
+  def test_minimum_node_of_right_subtree_min_x
+    root = @tree3.send(:root)
+    node = @tree3.send(:minimum_node, root.right, 0, root.right)
+    assert_equal('f', node.value)
+  end
+
+  def test_minimum_node_of_right_subtree_min_y
+    root = @tree3.send(:root)
+    node = @tree3.send(:minimum_node, root.right, 1, root.right)
+    assert_equal('e', node.value)
+  end
+
 end

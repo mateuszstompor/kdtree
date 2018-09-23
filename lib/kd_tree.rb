@@ -95,8 +95,9 @@ module Kd
         if current_best.coordinates[dimension_to_find] > current_node.coordinates[dimension_to_find]
           current_best = current_node
         end
-        current_node.left ? minimum_node(current_node.left, dimension_to_find, current_best) : current_node
-        current_node.right ? minimum_node(current_node.right, dimension_to_find, current_best) : current_node
+        min_left = current_node.left ? minimum_node(current_node.left, dimension_to_find, current_best) : current_node
+        min_right = current_node.right ? minimum_node(current_node.right, dimension_to_find, current_best) : current_node
+        min_left.coordinates[dimension_to_find] > min_right.coordinates[dimension_to_find] ? min_right : min_left
       end
     end
 
