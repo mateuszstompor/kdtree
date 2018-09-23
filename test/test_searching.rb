@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class SearchTests < Minitest::Test
-
   attr_accessor :tree
 
   def setup
@@ -24,5 +23,4 @@ class SearchTests < Minitest::Test
     root = tree.send(:root)
     assert_equal 'e', tree.send(:look_for_value_from, root, 'e').value
   end
-
 end

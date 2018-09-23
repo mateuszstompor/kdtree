@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class AppendTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new
   end
@@ -17,5 +16,4 @@ class AppendTests < Minitest::Test
       @tree << [2, 3, 4, 'mom']
     end
   end
-
 end

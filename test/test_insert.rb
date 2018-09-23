@@ -2,21 +2,20 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class InsertTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new
-    @value = "some_value"
+    @value = 'some_value'
   end
 
   def test_insert_point_with_incorrect_dimension
     assert_raises(Kd::DimensionError) do
-      @tree.insert [2, 3, 3], "some_value"
+      @tree.insert [2, 3, 3], 'some_value'
     end
   end
 
   def test_insert_something_different_than_array_as_coordianate
     assert_raises(ArgumentError) do
-      @tree.insert "Hey", @value
+      @tree.insert 'Hey', @value
     end
   end
 
@@ -76,7 +75,7 @@ class InsertTests < Minitest::Test
   def test_insert_case_1
     # Setup
     @tree.insert [2, 3.4], @value
-    other_value = "other_value"
+    other_value = 'other_value'
     @tree.insert [3, 4.4], other_value
     # Actual test
     root = @tree.send(:root)
@@ -96,7 +95,7 @@ class InsertTests < Minitest::Test
   def test_insert_case_2
     # Setup
     @tree.insert [2, 3.4], @value
-    other_value = "other_value"
+    other_value = 'other_value'
     @tree.insert [1, 4.4], other_value
     # Actual test
     root = @tree.send(:root)
@@ -162,5 +161,4 @@ class InsertTests < Minitest::Test
     assert_equal most_right_node.coordinates, [3, 5.4]
     assert_equal most_right_node.value, @value
   end
-
 end

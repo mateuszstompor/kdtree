@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class EmptinessTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new 2
   end
@@ -15,5 +14,4 @@ class EmptinessTests < Minitest::Test
     @tree.insert [2, 3], 'value'
     refute @tree.empty?
   end
-
 end
