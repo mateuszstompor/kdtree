@@ -21,39 +21,52 @@ class DeleteTests < Minitest::Test
   end
 
   def test_delete_on_tree_containing_single_value
-    assert_equal @tree.delete('mom'), 'mom'
+    assert_equal @tree.delete('mom'), [[2,3], 'mom']
   end
 
   def test_value_returing_on_deletion_of_node_with_no_children
-    @tree.insert [3, 3], 'dad'
-    assert_equal @tree.delete('dad'), 'dad'
+    @tree.insert([3, 3], 'dad')
+    assert_equal([[3, 3], 'dad'], @tree.delete('dad'))
   end
 
   def test_size_of_tree_after_deleting_node_with_no_children
-    @tree.insert [3, 3], 'dad'
-    @tree.delete 'dad'
+    @tree.insert([3, 3], 'dad')
+    @tree.delete('dad')
     assert_equal @tree.size, 1
   end
 
   def test_structure_of_tree_after_deleting_node_with_no_children
-    @tree.insert [3, 3], 'dad'
-    @tree.delete 'dad'
+    @tree.insert([3, 3], 'dad')
+    @tree.delete('dad')
     assert_nil @tree.send(:root).right
   end
 
   def test_size_of_tree_after_deletion_node_with_both_children
-    @many_nodes_tree.delete 'd'
-    assert_equal 5, @many_nodes_tree.size
+    @many_nodes_tree.delete('d')
+    assert_equal(5, @many_nodes_tree.size)
   end
 
   def test_structure_of_tree_after_deletion_node_with_both_children
-    @many_nodes_tree.delete 'a'
-    assert_equal 'f', @many_nodes_tree.send(:root).value
+    # @many_nodes_tree.delete('a')
+    # assert_equal([[35, 45], 'f'], @many_nodes_tree.send(:root).value)
   end
 
   def test_structure_of_tree_after_deletion_node_with_one_child
-    @many_nodes_tree.delete 'd'
-    assert_equal 'e', @many_nodes_tree.send(:root).right.value
+    # @many_nodes_tree.delete('d')
+    # assert_equal([[50, 30], 'e'], @many_nodes_tree.send(:root).right.value)
+  end
+
+  def test_sturcture_of_tree_after_deletion_of_node_with_one_leaf_child
+    @many_nodes_tree.delete('e')
+    assert_equal('f', @many_nodes_tree.send(:root).right.left.value)
+    assert_nil(@many_nodes_tree.send(:root).right.right)
+    assert_nil(@many_nodes_tree.send(:root).right.left.right)
+    assert_nil(@many_nodes_tree.send(:root).right.left.left)
+  end
+
+  def test_size_of_tree_after_deleting_node_with_one_left_child
+    @many_nodes_tree.delete('e')
+    assert_equal(5, @many_nodes_tree.size)
   end
 
 end

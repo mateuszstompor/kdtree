@@ -9,8 +9,7 @@ module Kd
     attr_reader :dimension, :size
 
     class Node
-      attr_reader :coordinates, :value
-      attr_accessor :parent, :left, :right, :depth
+      attr_accessor :parent, :left, :right, :depth, :coordinates, :value
 
       def initialize coordinates, value, parent
         @coordinates  = coordinates
@@ -80,8 +79,25 @@ module Kd
       end
     end
 
-    def minimum_node current_node, dimension
-      return nil
+    def minimum_node current_node, dimension_to_find, current_best
+      dimension_of_current_node = get_dimension(current_node)
+      if dimension_of_current_node == dimension_to_find
+        if current_node.left
+          minimum_node(current_node.left, dimension_to_find, current_node)
+        else
+          if current_best.coordinates[dimension_to_find] < current_node.coordinates[dimension_to_find]
+            current_best
+          else
+            current_node
+          end
+        end
+      else
+        if current_best.coordinates[dimension_to_find] > current_node.coordinates[dimension_to_find]
+          current_best = current_node
+        end
+        current_node.left ? minimum_node(current_node.left, dimension_to_find, current_best) : current_node
+        current_node.right ? minimum_node(current_node.right, dimension_to_find, current_best) : current_node
+      end
     end
 
     def insert_node current_node, node_to_insert, index
@@ -104,6 +120,10 @@ module Kd
           insert_node current_node.left, node_to_insert, new_index
         end
       end
+    end
+
+    def get_dimension node
+      node.depth % dimension
     end
 
     def clear
@@ -130,10 +150,10 @@ module Kd
     def look_for_value_from node, value
       if value == node.value
         node
-      elsif node.left
-        look_for_value_from node.left, value
-      elsif node.right
-        look_for_value_from node.right, value
+      elsif node.has_children?
+        left = look_for_value_from node.left, value if node.left
+        right = look_for_value_from node.right, value if node.right
+        left ? left : right
       else
         nil
       end
@@ -141,29 +161,44 @@ module Kd
 
     def delete value
       node = look_for_value_from(@root, value) if @root
-      if node
-        if !node.has_children?
-          parent = node.parent
-          if parent
-            if parent.left == node
-              parent.left = nil
-            else
-              parent.right = nil
-            end
+      node ? delete_node(node) : nil
+    end
+
+    def delete_node(node)
+      value_to_return = node.value
+      coordinates_to_return = node.coordinates
+      if !node.has_children?
+        parent = node.parent
+        if parent
+          if parent.left == node
+            parent.left = nil
           else
-            @root = nil
+            parent.right = nil
           end
-        elsif node.left
-          raise 'Unsupported case'
         else
-          raise 'Unsupported case'
+          @root = nil
         end
         @size -= 1
-        value
+      else
+        if node.right
+          min = minimum_node(node.right, get_dimension(node), node.right)
+          node.coordinates = min.coordinates
+          node.value = min.value
+          delete_node(min)
+        elsif node.left
+          min = minimum_node(node.left, get_dimension(node), node.left)
+          node.coordinates = min.coordinates
+          node.value = min.value
+          delete_node(min)
+          temp = node.left
+          node.left = node.right
+          node.right = temp
+        end
       end
+      return coordinates_to_return, value_to_return
     end
 
     private_constant :Node
-    private :root, :insert_node, :look_for_value_from, :retrieve_value, :minimum_node
+    private :root, :insert_node, :look_for_value_from, :retrieve_value, :minimum_node, :get_dimension
   end
 end
