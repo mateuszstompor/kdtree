@@ -37,4 +37,10 @@ class EncapsulationTests < Minitest::Test
     end
   end
 
+  def test_if_minimum_node_gives_an_error
+    assert_raises(NoMethodError) do
+      @tree.minimum_node(@tree.send(:root), 0)
+    end
+  end
+
 end

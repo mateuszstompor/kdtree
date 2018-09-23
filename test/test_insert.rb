@@ -24,6 +24,25 @@ class InsertTests < Minitest::Test
     assert_equal @value, @tree.insert([2, 3.4], @value)
   end
 
+  def test_depth_of_root_node
+    @tree.insert([0, 0], 'dad')
+    assert_equal 0, @tree.send(:root).depth
+  end
+
+  def test_depth_of_tree_with_two_nodes
+    @tree.insert([0, 0], 'dad')
+    @tree.insert([1, 1], 'mom')
+    assert_equal 1, @tree.send(:root).right.depth
+  end
+
+  def test_depth_of_tree_with_three_nodes
+    @tree.insert([0, 0], 'dad')
+    @tree.insert([1, 1], 'mom')
+    @tree.insert([-1, -1], 'cat')
+    assert_equal 1, @tree.send(:root).right.depth
+    assert_equal 1, @tree.send(:root).left.depth
+  end
+
   def test_if_creation_of_tree_with_incorrect_dimension_gives_an_error
     # positive number
     assert_raises(Kd::DimensionError) do

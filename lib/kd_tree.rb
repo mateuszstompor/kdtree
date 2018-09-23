@@ -10,14 +10,15 @@ module Kd
 
     class Node
       attr_reader :coordinates, :value
-      attr_accessor :parent, :left, :right
+      attr_accessor :parent, :left, :right, :depth
 
       def initialize coordinates, value, parent
-        @coordinates = coordinates
-        @value = value
-        @parent = parent
-        @left = nil
-        @right = nil
+        @coordinates  = coordinates
+        @value        = value
+        @parent       = parent
+        @left         = nil
+        @right        = nil
+        @depth        = 0
       end
 
       def has_children?
@@ -77,13 +78,17 @@ module Kd
       else
         retrieve_value(ranges, ((index + 1) % dimension), node.right, values)
       end
+    end
 
+    def minimum_node current_node, dimension
+      return nil
     end
 
     def insert_node current_node, node_to_insert, index
       if current_node.coordinates[index] <= node_to_insert.coordinates[index]
         unless current_node.right
           current_node.right = node_to_insert
+          node_to_insert.depth = current_node.depth + 1
           node_to_insert.parent = current_node
         else
           new_index = (index + 1) % dimension
@@ -92,6 +97,7 @@ module Kd
       else
         unless current_node.left
           current_node.left = node_to_insert
+          node_to_insert.depth = current_node.depth + 1
           node_to_insert.parent = current_node
         else
           new_index = (index + 1) % dimension
@@ -147,17 +153,17 @@ module Kd
           else
             @root = nil
           end
-          @size -= 1
-          value
-        elsif node.count_children == 2
+        elsif node.left
           raise 'Unsupported case'
         else
           raise 'Unsupported case'
         end
+        @size -= 1
+        value
       end
     end
 
     private_constant :Node
-    private :root, :insert_node, :look_for_value_from, :retrieve_value
+    private :root, :insert_node, :look_for_value_from, :retrieve_value, :minimum_node
   end
 end
