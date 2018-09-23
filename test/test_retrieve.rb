@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class RetrieveTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new 3
     @tree.insert [1, 2, 3], 'cat'
@@ -35,5 +34,4 @@ class RetrieveTests < Minitest::Test
     assert elements.include? 'car'
     assert elements.length, 3
   end
-
 end

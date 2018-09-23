@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class IncludeTests < Minitest::Test
-
   attr_accessor :tree
 
   def setup
@@ -27,5 +26,4 @@ class IncludeTests < Minitest::Test
     assert tree.include? :cousin
     assert tree.include? :mom
   end
-
 end

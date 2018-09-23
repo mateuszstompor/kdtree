@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class DeleteTests < Minitest::Test
-
   attr_accessor :tree, :tree2
 
   def setup
@@ -31,7 +30,7 @@ class DeleteTests < Minitest::Test
   end
 
   def test_delete_on_tree_containing_single_value
-    assert_equal @tree.delete('mom'), [[2,3], 'mom']
+    assert_equal @tree.delete('mom'), [[2, 3], 'mom']
   end
 
   def test_value_returing_on_deletion_of_node_with_no_children
@@ -91,5 +90,4 @@ class DeleteTests < Minitest::Test
     tree2.delete('e')
     assert_equal(5, tree2.size)
   end
-
 end

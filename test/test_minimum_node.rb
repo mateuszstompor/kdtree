@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class MinimumNodeTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new
 
@@ -55,5 +54,4 @@ class MinimumNodeTests < Minitest::Test
     node = @tree3.send(:minimum_node, root.right, 1, root.right)
     assert_equal('e', node.value)
   end
-
 end

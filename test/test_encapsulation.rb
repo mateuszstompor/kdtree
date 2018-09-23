@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class EncapsulationTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new
   end
@@ -49,4 +48,9 @@ class EncapsulationTests < Minitest::Test
     end
   end
 
+  def test_if_delete_value_gives_an_error
+    assert_raises(NoMethodError) do
+      @tree.delete_node(@tree.send(:root))
+    end
+  end
 end

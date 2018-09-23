@@ -37,6 +37,9 @@ It is not available at the moment, you will be able to install gem when it becom
     # As an example let's take [0, 1] where 0 is x and 1 is y coordinate
     tree.insert [0, 1], 'some_value'
 
+    # You can delete a value which you have inserted before
+    tree.delete 'some_value'
+
     # You can check if the tree is empty
     tree.empty?
 

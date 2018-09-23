@@ -2,7 +2,6 @@ require 'minitest/autorun'
 require_relative '../lib/kd_tree.rb'
 
 class ClearTests < Minitest::Test
-
   def setup
     @tree = Kd::Tree.new 2
   end
@@ -17,5 +16,4 @@ class ClearTests < Minitest::Test
     assert_nil @tree.clear
     assert @tree.empty?
   end
-
 end
