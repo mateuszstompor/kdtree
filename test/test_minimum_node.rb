@@ -54,4 +54,20 @@ class MinimumNodeTests < Minitest::Test
     node = @tree3.send(:minimum_node, root.right, 1, root.right)
     assert_equal('e', node.value)
   end
+
+  def test_minimum_x_value_on_empty_tree
+    assert_nil @tree.minimum(0)
+  end
+
+  def test_minimum_x_value_on_tree_with_two_nodes
+    assert_equal 'dad', @tree2.minimum(0).value
+  end
+
+  def test_minimum_x_value_on_tree_with_many_nodes
+    assert_equal 'b', @tree3.minimum(0).value
+  end
+
+  def test_minimum_y_value_on_tree_with_many_nodes
+    assert_equal 'c', @tree3.minimum(1).value
+  end
 end

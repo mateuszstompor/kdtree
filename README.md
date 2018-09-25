@@ -46,12 +46,18 @@ It is not available at the moment, you will be able to install gem when it becom
     # Check if it includes a value which you are looking for
     tree.include? 'some_value' 
 
+    # Append
+    tree << [2, 3, 'some_value'] 
+
     # Clear an existing tree
     tree.clear 
 
     # Retrieve data from a tree
     # Supply amount of ranges equivalent to the dimension of a tree 
     tree.retrieve [0..2, -1..2] 
+
+    # Retrieve minimal value for the dimension which a user has passed
+    tree.minimum 0 
 
     # Check the dimension of a tree
     tree.dimension

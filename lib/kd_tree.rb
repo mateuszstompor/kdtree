@@ -79,6 +79,10 @@ module Kd
       end
     end
 
+    def minimum dimension
+      return minimum_node(@root, dimension, @root) if @root
+    end
+
     def minimum_node(current_node, dimension_to_find, current_best)
       dimension_of_current_node = get_dimension(current_node)
       if dimension_of_current_node == dimension_to_find
