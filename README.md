@@ -5,7 +5,7 @@
 Repository contains Ruby implementation of space partitioning tree data structure. It is a form of binary tree and its detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree).
 
 # Approach
-The Tree was implemented in TDD approach. There are many simple, easy to read tests implemented with help of MiniTest gem. 
+The Tree was implemented in TDD approach. There are many simple, easy to read tests, implemented with help of MiniTest gem.
 
 # Installation
 ###### Offline installation
@@ -17,9 +17,8 @@ The Tree was implemented in TDD approach. There are many simple, easy to read te
 ```
 * Install gem in search paths
 ```bash
-    $ gem install kd_tree_ms-x.x.x.gem
+    $ gem install kd_tree_ms-1.0.0.gem
 ```
-Where "x.x.x" is a version number
 
 ###### Online installation with ruby gem
 It is not available at the moment, you will be able to install gem when it becomes fully stable
@@ -27,7 +26,7 @@ It is not available at the moment, you will be able to install gem when it becom
 # Usage
 ```ruby
     # First of all you have to import the library to your project
-    require 'kd_treųe_ms'
+    require 'kd_tree_ms'
 
     # Create an empty tree of dimension 2
     tree = Kd::Tree.new 2
@@ -44,20 +43,20 @@ It is not available at the moment, you will be able to install gem when it becom
     tree.empty?
 
     # Check if it includes a value which you are looking for
-    tree.include? 'some_value' 
+    tree.include? 'some_value'
 
     # Append
-    tree << [2, 3, 'some_value'] 
+    tree << [2, 3, 'some_value']
 
     # Clear an existing tree
-    tree.clear 
+    tree.clear
 
     # Retrieve data from a tree
-    # Supply amount of ranges equivalent to the dimension of a tree 
-    tree.retrieve [0..2, -1..2] 
+    # Supply amount of ranges equivalent to the dimension of a tree
+    tree.retrieve [0..2, -1..2]
 
     # Retrieve minimal value for the dimension which a user has passed
-    tree.minimum 0 
+    tree.minimum 0
 
     # Check the dimension of a tree
     tree.dimension
