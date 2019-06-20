@@ -1,7 +1,4 @@
 language: ruby
+rvm: 2.6.3
 
 script: bundle exec rake test
-
-rvm: 2.1
-
-os: osx
