@@ -1,6 +1,6 @@
-#
-# Author: Mateusz Stompór
-#
+# # # # # # # # # # # # # #
+# Author: Mateusz Stompór #
+# # # # # # # # # # # # # #
 
 module Kd
   class DimensionError < StandardError; end
@@ -64,6 +64,7 @@ module Kd
 
     def retrieve_value(ranges, index, node, values)
       return values if node.nil?
+
       is_point_within_bounds = true
       ranges.each_index do |i|
         is_point_within_bounds &&= ranges[i].include?(node.coordinates[i])
@@ -79,8 +80,8 @@ module Kd
       end
     end
 
-    def minimum dimension
-      return minimum_node(@root, dimension, @root) if @root
+    def minimum(dimension)
+      minimum_node(@root, dimension, @root) if @root
     end
 
     def minimum_node(current_node, dimension_to_find, current_best)
@@ -151,14 +152,14 @@ module Kd
       if value == node.value
         node
       elsif node.children?
-        left = look_for_value_from node.left, value if node.left
-        right = look_for_value_from node.right, value if node.right
+        left = node.left ? look_for_value_from(node.left, value) : nil
+        right = node.right ? look_for_value_from(node.right, value) : nil
         left || right
       end
     end
 
     def delete(value)
-      node = look_for_value_from(@root, value) if @root
+      node = @root ? look_for_value_from(@root, value) : nil
       node ? delete_node(node) : nil
     end
 
@@ -195,6 +196,7 @@ module Kd
     end
 
     private_constant :Node
-    private :root, :insert_node, :look_for_value_from, :retrieve_value, :minimum_node, :get_dimension, :delete_node
+    private :root, :insert_node, :look_for_value_from,
+            :retrieve_value, :minimum_node, :get_dimension, :delete_node
   end
 end
