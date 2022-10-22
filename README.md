@@ -50,10 +50,9 @@ Detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree)
 
 # Approach
 The Tree was implemented in TDD approach. 
-There are many simple, easy to read tests, implemented with help of MiniTest gem
+There are many simple, easy to read tests, written with help of MiniTest gem
 
 # Installation
-###### Offline installation
 * Download or clone repository
 * Navigate to the root folder of the project
 * Build gem with command:
