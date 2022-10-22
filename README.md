@@ -1,31 +1,14 @@
-# KDTree
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://www.travis-ci.org/mateuszstompor/kdtree.svg?branch=master)](https://www.travis-ci.org/mateuszstompor/kdtree)
-<br>
-Repository contains Ruby implementation of space partitioning tree data structure. It is a form of binary tree and its detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree).
+# KDTree &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://www.travis-ci.org/mateuszstompor/kdtree.svg?branch=master)](https://www.travis-ci.org/mateuszstompor/kdtree)
 
-# Approach
-The Tree was implemented in TDD approach. There are many simple, easy to read tests, implemented with help of MiniTest gem.
 
-# Installation
-###### Offline installation
-* Download or clone repository
-* Navigate to the root folder of the project
-* Build gem with command:
-```bash
-    $ gem build kd_tree.gemspec
-```
-* Install gem in search paths
-```bash
-    $ gem install kd_tree_ms-1.0.0.gem
-```
-
-###### Online installation with ruby gem
-It is not available at the moment, you will be able to install gem when it becomes fully stable
+### About the project
+Repository contains Ruby implementation of space partitioning tree data structure. 
+It is a form of binary tree meant to provide a efficient way of objects retrieval.
+Detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree)
 
 # Usage
 ```ruby
-    # First of all you have to import the library to your project
+    # Import the library to your project
     require 'kd_tree_ms'
 
     # Create an empty tree of dimension 2
@@ -63,4 +46,21 @@ It is not available at the moment, you will be able to install gem when it becom
 
     # It is possible to check its size as well
     tree.size
+```
+
+# Approach
+The Tree was implemented in TDD approach. 
+There are many simple, easy to read tests, implemented with help of MiniTest gem
+
+# Installation
+###### Offline installation
+* Download or clone repository
+* Navigate to the root folder of the project
+* Build gem with command:
+```bash
+    $ gem build kd_tree.gemspec
+```
+* Install gem on your machine
+```bash
+    $ sudo gem install kd_tree_ms-1.0.0.gem
 ```
