@@ -1,4 +1,4 @@
-# KDTree &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://www.travis-ci.org/mateuszstompor/kdtree.svg?branch=master)](https://www.travis-ci.org/mateuszstompor/kdtree)
+# KDTree &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://github.com/mateuszstompor/kdtree/actions/workflows/ruby.yml/badge.svg?branch=master)](https://github.com/mateuszstompor/kdtree/actions/workflows/ruby.yml)
 
 
 ### About the project
@@ -6,7 +6,7 @@ Repository contains Ruby implementation of space partitioning tree data structur
 It is a form of binary tree meant to provide a efficient way of objects retrieval.
 Detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree)
 
-# Usage
+### Usage
 ```ruby
     # Import the library to your project
     require 'kd_tree_ms'
@@ -48,11 +48,11 @@ Detailed description can be found [here](https://en.wikipedia.org/wiki/K-d_tree)
     tree.size
 ```
 
-# Approach
+### Approach
 The Tree was implemented in TDD approach. 
 There are many simple, easy to read tests, written with help of MiniTest gem
 
-# Installation
+### Installation
 * Download or clone repository
 * Navigate to the root folder of the project
 * Build gem with command:
@@ -63,3 +63,9 @@ There are many simple, easy to read tests, written with help of MiniTest gem
 ```bash
     $ sudo gem install kd_tree_ms-1.0.0.gem
 ```
+
+### Contributing
+Contributions are welcome! Please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
+
+### Contact
+For support or inquiries, please open an issue on the [GitHub repository](https://github.com/mateuszstompor/kdtree/issues).
